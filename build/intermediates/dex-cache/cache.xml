@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_4ca8e59a177819e14da76b97acbd4eecdf05135e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Gayan Denaindra\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.6\2586312cd2b8a511e4c6236736f5a039fc0f2273\rxjava-1.1.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="2586312cd2b8a511e4c6236736f5a039fc0f2273">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\rxjava-1.1.6_fe38071fbc42ee8dfd03cf1952dc13c7a2775335\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_d83e79cbb9b36961e6bfc04a204a3faa2399ecf7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\design\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="3b236883e0df6002cabb01ce57d00a5b1e5de610">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.0.1_04ee0e944f3bdb7278509c3330a7889e17baabd8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.0.1_17280272e2e2b854aa9bb50aa1fc9b58323b3f51\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f83b00041ecfba705603fec40363416c7de69719">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_211a989d09eb195593c13f6c9636863d7d20351e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-8.4.0_c023718847e32587b64660b1af649f0499f3a13c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_c583dcf68e2d3bb781b1f673f4e9df70bc17e8f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_768430c2a9a3c0f2e4c147c64b70c464a4971bea\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_51ab30143fbff50b8779a9626e6d377c1c44e7c7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0c826cf03f62bb7892de85953570dbe6fb56db1d">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_50dc981461c6aa79de568b62e1a673770d73c77c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.0.1_b10124db32db084d77a36e10ee32a6c0ecf966b5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_1914414a3f69672c11410534fbddd9ee604c6f17\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_7590b7c7aadf1d296dca3aeebe1e8d08f3403565\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.0.1_12bdadcbd6d0dc01c2dd543984eb4c54254a3d67\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_398c9bce341ebfc3270a3ee38a3007b700536397\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="2ddae65dd05162aed9879c68601a706e12012ab7">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_9fb7fac082257e44d8a7dfaa4900245cd6118fda\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.1_cc1bd48c00f5a78f470bcf6e6311e0e6956c802d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.1_9d8742e97f250364d4d7dc04bcf6de99c337781e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_d6ac7e40e6934680d2fd08f9e9f298c3feb72ed4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="297d4bcf6ed4e747a1bf7d0d094a2d911a8d3a8e">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.0.1_2452d661c5b3f90bad461a9ae4750df34aca6e29\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\id.zelory\compressor\1.0.4\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="3a724d5d031884220bae4a255f6d2763cd0ebdc4">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\id.zelory-compressor-1.0.4_48f9c2b6c49183263a998767a6247a86e64fb496\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_4fb6c6b98bbdf7be8a2355e5342f65df418293fe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_40f24af5a1a4cc8f62814e6097224b3b89c127f2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
+        <dex dex="F:\AndroidProjects\NFCImageTranswer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_35031e09a948543feae89d8ce1c58f92a2d628c2\classes.dex" />
+    </item>
+
+</items>
