@@ -14,10 +14,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.apiit.janith.nfcimagetranswer.Constant.Constants;
-import com.apiit.janith.nfcimagetranswer.En_de_crypt.Encrypt;
+import com.apiit.janith.nfcimagetranswer.En_de_crypt.EncryptAndDecrypt;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import java.io.File;
 
 import static android.widget.Toast.*;
 
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageSettings imagesettings;
     private ImageCompressor imgCompressor;
     private GoogleApiClient client;
-    private Encrypt encription;
+    private EncryptAndDecrypt encription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         filedetaisl = FileSettings.getInstance(this);
         imagesettings = ImageSettings.getInstance();
         imgCompressor = ImageCompressor.getInstance(this);
-        encription = Encrypt.getInstance();
+        encription = EncryptAndDecrypt.getInstance();
 
         //Click events
         loadimage.setOnClickListener(new View.OnClickListener() {
@@ -75,12 +73,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //encript image
-                File file = imgCompressor.getCompressImageFile();
-                Bitmap map = filedetaisl.FIleToBitmap(file);
-                String base64 = imagesettings.Based64Generator(map);
-                encription.EncriptImage(base64);
-                filedetaisl.SaveEncriptFile(encription.getEncripSting());
+//                File file = imgCompressor.getCompressImageFile();
+//                Bitmap map = filedetaisl.FIleToBitmap(file);
+//                String base64 = imagesettings.Based64Generator(map);
+//                encription.EncriptImage(base64);
+//                filedetaisl.WriteEncriptFile(encription.getEncripSting());
 
+                //decript image
+                String encriptText = filedetaisl.ReadEncriptFile();
+                encription.Decrypt(encriptText);
+                Bitmap image = imagesettings.BitMapGenerator(encription.getdecrpytString());
+                imageViwer.setImageBitmap(image);
             }
         });
     }
