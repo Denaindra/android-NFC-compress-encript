@@ -7,59 +7,81 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
+import com.apiit.janith.nfcimagetranswer.Constant.Constants;
+import com.apiit.janith.nfcimagetranswer.En_de_crypt.Encrypt;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import static android.R.attr.data;
+import java.io.File;
+
+import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMG = 1;
-    private Button btn1, btn2, btn3, btn4;
+    private Button loadimage, compress, encript, nfcsend;
     private ImageView imageViwer;
     private String filename;
     private String imgDecodableString;
     private FileSettings filedetaisl;
-    private ImageSettings con;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+    private ImageSettings imagesettings;
+    private ImageCompressor imgCompressor;
     private GoogleApiClient client;
-
+    private Encrypt encription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn1 = (Button) findViewById(R.id.loadimage);
-        btn2 = (Button) findViewById(R.id.compress);
-        btn3 = (Button) findViewById(R.id.zip);
-        btn4 = (Button) findViewById(R.id.send);
 
+        //UI propperties
+        loadimage = (Button) findViewById(R.id.loadimage);
+        compress = (Button) findViewById(R.id.compress);
+        encript = (Button) findViewById(R.id.encript);
+        nfcsend = (Button) findViewById(R.id.send);
         imageViwer = (ImageView) findViewById(R.id.image_view);
-        filedetaisl = FileSettings.getInstance();
-        con = ImageSettings.getInstance();
-        btn1.setOnClickListener(new View.OnClickListener() {
+
+        //static instances
+        filedetaisl = FileSettings.getInstance(this);
+        imagesettings = ImageSettings.getInstance();
+        imgCompressor = ImageCompressor.getInstance(this);
+        encription = Encrypt.getInstance();
+
+        //Click events
+        loadimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
             }
 
+        });
+        compress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (filedetaisl.CheckFileAvailaBility()) {
+                    imgCompressor.StartCompressImage(filedetaisl.getFile());
+                } else {
+                    Toast.makeText(getApplicationContext(), Constants.getMessage2(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        encript.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //encript image
+                File file = imgCompressor.getCompressImageFile();
+                Bitmap map = filedetaisl.FIleToBitmap(file);
+                String base64 = imagesettings.Based64Generator(map);
+                encription.EncriptImage(base64);
+                filedetaisl.SaveEncriptFile(encription.getEncripSting());
+
+            }
         });
     }
 
@@ -77,16 +99,19 @@ public class MainActivity extends AppCompatActivity {
                 filename = filedetaisl.getFileDetails(cursor, columnIndex);
                 cursor.close();
                 Bitmap bmp = BitmapFactory.decodeFile(imgDecodableString);
-                imageViwer.setImageBitmap(con.ImageResize(bmp));
+                imageViwer.setImageBitmap(imagesettings.ImageResize(bmp));
+                makeText(this, Constants.getMessage1(), LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "You haven't picked Image",
-                        Toast.LENGTH_LONG).show();
+                makeText(this, Constants.getMessage2(),
+                        LENGTH_LONG).show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, e + "Something went wrong", Toast.LENGTH_LONG)
+            makeText(this, e + Constants.getMessage3(), LENGTH_LONG)
                     .show();
         }
     }
+
+
 }
 
 
