@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import com.apiit.janith.nfcimagetranswer.Constant.Constants;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 /**
@@ -36,6 +39,7 @@ public class FileSettings {
     }
 
     public String getFileDetails(Cursor cursor, int columnIndex) {
+
         String picturePath = cursor.getString(columnIndex);
         file = new File(picturePath);
         return file.getName();
@@ -58,14 +62,14 @@ public class FileSettings {
         return bitmap;
     }
 
-    public void SaveEncriptFile(String EncriptString) {
+    public void WriteEncriptFile(String EncriptString) {
         try {
-            File newFolder = new File(Environment.getExternalStorageDirectory(), "TestFolder");
+            File newFolder = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
             if (!newFolder.exists()) {
                 newFolder.mkdir();
             }
             try {
-                this.encriptImage = new File(newFolder, "image" + ".png");
+                this.encriptImage = new File(newFolder, Constants.getEncriptFile());
                 encriptImage.createNewFile();
                 FileOutputStream fOut = new FileOutputStream(encriptImage);
                 OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
@@ -94,8 +98,23 @@ public class FileSettings {
         }
     }
 
-    public void ReadEncriptFile() {
-
+    public String ReadEncriptFile() {
+        File sdcard = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
+        File file = new File(sdcard, Constants.getEncriptFile());
+        StringBuilder text = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append('\n');
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String line = text.toString();
+        return line;
     }
 
 }
