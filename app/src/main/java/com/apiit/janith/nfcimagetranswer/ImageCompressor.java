@@ -29,8 +29,8 @@ public class ImageCompressor {
         this.context = context;
     }
 
-    public static ImageCompressor getInstance(Context context){
-        instance=new ImageCompressor(context);
+    public static ImageCompressor getInstance(Context context) {
+        instance = new ImageCompressor(context);
         return instance;
     }
 
@@ -46,11 +46,16 @@ public class ImageCompressor {
                             Environment.DIRECTORY_PICTURES).getAbsolutePath())
                     .build()
                     .compressToFile(CaptureImage);
-            setCompressedImage();
+            //setCompressedImage();
+            Toast.makeText(this.context, Constants.getMessage5(), Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             Log.d("Exception 1", ex.getMessage());
         }
 
+    }
+
+    public File getCompressImageFile() {
+        return compressedImage;
     }
 
     private void setCompressedImage() {
