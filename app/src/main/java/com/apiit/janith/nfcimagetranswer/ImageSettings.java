@@ -30,21 +30,18 @@ public class ImageSettings {
     public String Based64Generator(Bitmap bmp) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG,50, baos);
+        bmp.compress(Bitmap.CompressFormat.PNG, 50, baos);
         byte[] b = baos.toByteArray();
         String BitmapString = Base64.encodeToString(b, Base64.DEFAULT);
         return BitmapString;
     }
 
     public Bitmap BitMapGenerator(String encriptString) {
-        try {
-            byte[] encodeByte = Base64.decode(encriptString, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
+
+        byte[] encodeByte = Base64.decode(encriptString, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+        return bitmap;
+
     }
 
 }
