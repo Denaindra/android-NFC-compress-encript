@@ -17,19 +17,21 @@ import com.apiit.janith.nfcimagetranswer.Constant.Constants;
 import com.apiit.janith.nfcimagetranswer.En_de_crypt.EncryptAndDecrypt;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.File;
+
 import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMG = 1;
-    private Button loadimage, compress, encript, nfcsend;
+    private Button loadimage, compress, encript,decript, nfcsend;
     private ImageView imageViwer;
     private String filename;
     private String imgDecodableString;
     private FileSettings filedetaisl;
     private ImageSettings imagesettings;
     private ImageCompressor imgCompressor;
-    private GoogleApiClient client;
     private EncryptAndDecrypt encription;
+    private NFCSettings nfcinstace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         compress = (Button) findViewById(R.id.compress);
         encript = (Button) findViewById(R.id.encript);
         nfcsend = (Button) findViewById(R.id.send);
+        decript=(Button)findViewById(R.id.decript);
         imageViwer = (ImageView) findViewById(R.id.image_view);
 
         //static instances
@@ -48,11 +51,14 @@ public class MainActivity extends AppCompatActivity {
         imagesettings = ImageSettings.getInstance();
         imgCompressor = ImageCompressor.getInstance(this);
         encription = EncryptAndDecrypt.getInstance();
+        nfcinstace=NFCSettings.getinstace(this);
+
 
         //Click events
         loadimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                compress.setEnabled(true);
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
             }
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         compress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                encript.setEnabled(true);
                 if (filedetaisl.CheckFileAvailaBility()) {
                     imgCompressor.StartCompressImage(filedetaisl.getFile());
                 } else {
@@ -72,20 +79,47 @@ public class MainActivity extends AppCompatActivity {
         encript.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nfcsend.setEnabled(true);
                 //encript image
-//                File file = imgCompressor.getCompressImageFile();
-//                Bitmap map = filedetaisl.FIleToBitmap(file);
-//                String base64 = imagesettings.Based64Generator(map);
-//                encription.EncriptImage(base64);
-//                filedetaisl.WriteEncriptFile(encription.getEncripSting());
+                File file = imgCompressor.getCompressImageFile();
+                Bitmap map = filedetaisl.FIleToBitmap(file);
+                String base64 = imagesettings.Based64Generator(map);
+                encription.EncriptImage(base64);
+                filedetaisl.WriteEncriptFile(encription.getEncripSting());
 
-                //decript image
-                String encriptText = filedetaisl.ReadEncriptFile();
-                encription.Decrypt(encriptText);
-                Bitmap image = imagesettings.BitMapGenerator(encription.getdecrpytString());
-                imageViwer.setImageBitmap(image);
             }
         });
+
+        nfcsend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nfcinstace.CheckNFCSettings();
+                if(nfcinstace.getNfcCondition()){
+                    nfcinstace.sendFile();
+                    disableButtons();
+                }
+                disableButtons();
+            }
+        } );
+
+        decript.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //decript image
+//                String encriptText = filedetaisl.ReadEncriptFile();
+//                encription.Decrypt(encriptText);
+//                Bitmap image = imagesettings.BitMapGenerator(encription.getdecrpytString());
+//                imageViwer.setImageBitmap(image);
+            }
+        } );
+
+
+    }
+
+    private void disableButtons() {
+        compress.setEnabled(false);
+        encript.setEnabled(false);
+        nfcsend.setEnabled(false);
     }
 
     @Override
