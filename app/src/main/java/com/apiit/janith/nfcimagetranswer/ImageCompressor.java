@@ -42,8 +42,8 @@ public class ImageCompressor {
                     .setMaxHeight(Constants.getMaxHeight())
                     .setQuality(Constants.getQulity())
                     .setCompressFormat(Bitmap.CompressFormat.PNG)
-                    .setDestinationDirectoryPath(Environment.getExternalStoragePublicDirectory(
-                            Environment.DIRECTORY_PICTURES).getAbsolutePath())
+//                    .setDestinationDirectoryPath(Environment.getExternalStoragePublicDirectory(
+//                            Environment.DIRECTORY_PICTURES).getAbsolutePath())
                     .build()
                     .compressToFile(CaptureImage);
             //setCompressedImage();

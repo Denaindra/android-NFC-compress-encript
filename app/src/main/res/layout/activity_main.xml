@@ -11,6 +11,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     android:weightSum="1">
 
     <Button
@@ -19,31 +20,63 @@
         android:layout_height="wrap_content"
         android:id="@+id/loadimage"
         android:layout_centerHorizontal="true"
-        style="@style/Widget.AppCompat.Button.Colored" />
-
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:elevation="0dp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal|bold" />
+    <Button
+        android:text="Load Video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loadvide"
+        android:layout_centerHorizontal="true"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:elevation="0dp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal|bold" />
     <Button
         android:text="Compress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/compress"
-        android:layout_weight="0.05"
-        style="@style/Widget.AppCompat.Button.Colored" />
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textStyle="normal|bold"
+        android:enabled="false"/>
 
-    <Button
-        android:text="zip image"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/zip"
-        android:layout_weight="0.05"
-        style="@style/Widget.AppCompat.Button.Colored" />
+        android:inputType="textPassword"
+        android:hint="Encript passwaord"
+        android:ems="10"
+        android:id="@+id/encriptPass" />
+
+    <Button
+        android:text="Encript Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/encript"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textStyle="normal|bold"
+        android:enabled="false"/>
 
     <Button
         android:text="Send via NFC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/send"
-        android:layout_weight="0.05"
-        style="@style/Widget.AppCompat.Button.Colored" />
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textStyle="normal|bold"
+        android:enabled="false"/>
+    <Button
+        android:text="Decrpt and View Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/decript"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textStyle="normal|bold" />
+
+
 
     <ImageView
         android:layout_width="350dp"
@@ -53,6 +86,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_weight="0.72" />
+        android:layout_weight="0.72"
+        android:enabled="false"/>
 
 </LinearLayout>

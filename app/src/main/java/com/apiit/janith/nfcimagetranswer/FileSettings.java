@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
@@ -13,11 +14,18 @@ import android.widget.Toast;
 import com.apiit.janith.nfcimagetranswer.Constant.Constants;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+
+import static android.R.attr.bitmap;
+import static android.R.attr.name;
 
 /**
  * Created by Gayan Denaindra on 1/28/2017.
@@ -83,14 +91,37 @@ public class FileSettings {
         } catch (Exception e) {
             System.out.println("e: " + e);
         }
-        setCompressedImage();
+        setCompressedImage(encriptImage);
     }
 
-    private void setCompressedImage() {
+    public void BitmapToFile(Bitmap image) {
+        File imageFile = new File(Constants.getDecriptFilePath());
+        OutputStream os;
+        try {
+            os = new FileOutputStream(imageFile);
+            image.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+        }
+        setCompressedImage(imageFile);
+    }
+
+   public void DeleteFile(){
+       try {
+           File file = new File(Constants.getDecriptFilePath());
+           file.delete();
+       }catch (Exception ex)
+       {
+
+       }
+   }
+    public void setCompressedImage(File imageFile) {
         try {
             Toast.makeText(this.context, Constants.getMessage4(), Toast.LENGTH_LONG).show();
             Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            Uri contentUri = Uri.fromFile(encriptImage);
+            Uri contentUri = Uri.fromFile(imageFile);
             mediaScanIntent.setData(contentUri);
             this.context.sendBroadcast(mediaScanIntent);
         } catch (Exception ex) {
@@ -99,8 +130,9 @@ public class FileSettings {
     }
 
     public String ReadEncriptFile() {
-        File sdcard = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
-        File file = new File(sdcard, Constants.getEncriptFile());
+        File sdcard = new File(Environment.getExternalStorageDirectory(), Constants.getNfcFolder());
+        File file = new File(sdcard, Constants.getNfcImage());
+
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
