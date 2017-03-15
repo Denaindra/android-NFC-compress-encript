@@ -18,8 +18,7 @@ import android.widget.Toast;
 
 import com.apiit.janith.nfcimagetranswer.Constant.Constants;
 import com.apiit.janith.nfcimagetranswer.En_de_crypt.EncryptAndDecrypt;
-
-import org.w3c.dom.Text;
+import com.apiit.janith.nfcimagetranswer.En_de_crypt.VideoSettings;
 
 import java.io.File;
 
@@ -28,8 +27,8 @@ import static android.widget.Toast.makeText;
 
 public class MainActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMG = 1;
-    private static int REQUEST_TAKE_GALLERY_VIDEO=1;
-    private Button loadimage,loadvideos, compress, encript, decript, nfcsend;
+    private static int REQUEST_TAKE_GALLERY_VIDEO = 1;
+    private Button loadimage, loadvideos, compress, encript, decript, nfcsend, decriptVideo;
     private EditText encerippass;
     private ImageView imageViwer;
     private String filename;
@@ -37,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
     private FileSettings filedetaisl;
     private ImageSettings imagesettings;
     private ImageCompressor imgCompressor;
+    private VideoSettings videoInstance;
     private EncryptAndDecrypt encription;
     private NFCSettings nfcinstace;
     private Boolean imageStaus;
     private Boolean videoStatus;
+    private String VideoString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +50,14 @@ public class MainActivity extends AppCompatActivity {
 
         //UI propperties
         loadimage = (Button) findViewById(R.id.loadimage);
-        loadvideos=(Button) findViewById(R.id.loadvide);
+        loadvideos = (Button) findViewById(R.id.loadvide);
         compress = (Button) findViewById(R.id.compress);
         encript = (Button) findViewById(R.id.encript);
         nfcsend = (Button) findViewById(R.id.send);
         decript = (Button) findViewById(R.id.decript);
         imageViwer = (ImageView) findViewById(R.id.image_view);
-        encerippass=(EditText)findViewById(R.id.encriptPass);
+        encerippass = (EditText) findViewById(R.id.encriptPass);
+        decriptVideo = (Button) findViewById(R.id.decriptvideo);
 
         //static instances
         filedetaisl = FileSettings.getInstance(this);
@@ -63,43 +65,66 @@ public class MainActivity extends AppCompatActivity {
         imgCompressor = ImageCompressor.getInstance(this);
         encription = EncryptAndDecrypt.getInstance();
         nfcinstace = NFCSettings.getinstace(this);
-
+        videoInstance = VideoSettings.getinstace();
 
         //Click events
+        //image button
         loadimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageStaus=true;
+                imageStaus = true;
+                videoStatus = false;
                 compress.setEnabled(true);
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
             }
 
         });
+        //video button
         loadvideos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    videoStatus = true;
-                    compress.setEnabled(true);
-                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(galleryIntent, REQUEST_TAKE_GALLERY_VIDEO);
-                }catch (Exception ex)
-                {
+                videoStatus = true;
+                imageStaus = false;
+                compress.setEnabled(true);
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, REQUEST_TAKE_GALLERY_VIDEO);
 
-                }
             }
 
         });
         compress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                encript.setEnabled(true);
-                if (filedetaisl.CheckFileAvailaBility()) {
-                    imgCompressor.StartCompressImage(filedetaisl.getFile());
-                } else {
-                    Toast.makeText(getApplicationContext(), Constants.getMessage2(), Toast.LENGTH_SHORT).show();
+                try {
+                    encript.setEnabled(true);
+                    //image file
+                    if (imageStaus) {
+                        if (filedetaisl.CheckFileAvailaBility()) {
+                            imgCompressor.StartCompressImage(filedetaisl.getFile());
+                        } else {
+                            Toast.makeText(getApplicationContext(), Constants.getMessage2(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    //video file
+                    if (videoStatus) {
+                        if (filedetaisl.CheckFileAvailaBility()) {
+                            File videoFile = filedetaisl.getFile();
+                            try {
+                                byte[] file = filedetaisl.FileConvertToByteArray(videoFile.getAbsolutePath());
+                                VideoString = videoInstance.FileConvertsToBase64(file);
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), Constants.getMessage2(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                } catch (Exception ex) {
+
                 }
+
             }
         });
 
@@ -108,14 +133,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 nfcsend.setEnabled(true);
                 //encript image
-                if(encerippass.getText().toString()!=null && encerippass.getText().toString()!="") {
-                    File file = imgCompressor.getCompressImageFile();
-                    Bitmap map = filedetaisl.FIleToBitmap(file);
-                    String base64 = imagesettings.Based64Generator(map);
-                    encription.EncriptImage(encerippass.getText().toString(), base64);
-                    filedetaisl.WriteEncriptFile(encription.getEncripSting());
-                }else{
-                    Toast.makeText(getApplicationContext(), Constants.getNfcmessage8(), Toast.LENGTH_SHORT).show();
+                if (imageStaus) {
+                    if (encerippass.getText().toString() != null && encerippass.getText().toString() != "") {
+                        File file = imgCompressor.getCompressImageFile();
+                        Bitmap map = filedetaisl.FIleToBitmap(file);
+                        String base64 = imagesettings.Based64Generator(map);
+                        encription.Encriptfile(encerippass.getText().toString(), base64);
+                        filedetaisl.WriteEncriptFile(encription.getEncripSting());
+                    } else {
+                        Toast.makeText(getApplicationContext(), Constants.getNfcmessage8(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                //encript video
+                if (videoStatus) {
+                    encription.Encriptfile(encerippass.getText().toString(), VideoString);
+                    filedetaisl.writeVideoFile(encription.getEncripSting());
                 }
             }
         });
@@ -125,8 +157,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 nfcinstace.CheckNFCSettings();
-                if (nfcinstace.getNfcCondition()) {
-                    nfcinstace.sendFile();
+                if(imageStaus) {
+                    if (nfcinstace.getNfcCondition()) {
+                        nfcinstace.sendFile();
+                    }
+                }
+                if(videoStatus){
+
                 }
                 disableButtons();
             }
@@ -138,17 +175,32 @@ public class MainActivity extends AppCompatActivity {
                 //decript image
                 try {
                     String encriptText = filedetaisl.ReadEncriptFile();
-                    encription.Decrypt(encerippass.getText().toString(),encriptText);
+                    encription.Decrypt(encerippass.getText().toString(), encriptText);
                     Bitmap image = imagesettings.BitMapGenerator(encription.getdecrpytString());
-
                     filedetaisl.BitmapToFile(image);
                     imageViwer.setImageBitmap(image);
-                }catch (Exception e){
+
+                } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), Constants.getNfcmessage7(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        decriptVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //decript video
+                try {
+                    String encriptText = filedetaisl.ReadtheVideFile();
+                    encription.Decrypt(encerippass.getText().toString(), encriptText);
+                    byte[] videofile = videoInstance.StringToByetArray(encription.getdecrpytString());
+                    filedetaisl.ByteArrayToString(videofile);
+
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), Constants.getNfcmessage7(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
@@ -156,14 +208,14 @@ public class MainActivity extends AppCompatActivity {
         compress.setEnabled(false);
         encript.setEnabled(false);
         nfcsend.setEnabled(false);
-        this.imageStaus=false;
-        this.videoStatus=false;
+        this.imageStaus = false;
+        this.videoStatus = false;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
-            if (requestCode == RESULT_LOAD_IMG && requestCode==REQUEST_TAKE_GALLERY_VIDEO && resultCode == RESULT_OK && null != data) {
+            if (requestCode == RESULT_LOAD_IMG && requestCode == REQUEST_TAKE_GALLERY_VIDEO && resultCode == RESULT_OK && null != data) {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
@@ -172,16 +224,18 @@ public class MainActivity extends AppCompatActivity {
                 imgDecodableString = cursor.getString(columnIndex);
                 filename = filedetaisl.getFileDetails(cursor, columnIndex);
                 cursor.close();
-
-                //set validation for images and videos
-                Bitmap bmp = BitmapFactory.decodeFile(imgDecodableString);
-                imageViwer.setImageBitmap(imagesettings.ImageResize(bmp));
-                makeText(this, Constants.getMessage1(), LENGTH_LONG).show();
+                //image scussfully loadded
+                if (imageStaus) {
+                    //set validation for images and videos
+                    Bitmap bmp = BitmapFactory.decodeFile(imgDecodableString);
+                    imageViwer.setImageBitmap(imagesettings.ImageResize(bmp));
+                    makeText(this, Constants.getMessage1(), LENGTH_LONG).show();
+                }
             } else {
-                makeText(this, Constants.getMessage2(),LENGTH_LONG).show();
+                makeText(this, Constants.getMessage2(), LENGTH_LONG).show();
             }
         } catch (Exception e) {
-            makeText(this, e + Constants.getMessage3(), LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 

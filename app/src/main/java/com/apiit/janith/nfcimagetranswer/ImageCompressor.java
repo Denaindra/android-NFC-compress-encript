@@ -42,8 +42,6 @@ public class ImageCompressor {
                     .setMaxHeight(Constants.getMaxHeight())
                     .setQuality(Constants.getQulity())
                     .setCompressFormat(Bitmap.CompressFormat.PNG)
-//                    .setDestinationDirectoryPath(Environment.getExternalStoragePublicDirectory(
-//                            Environment.DIRECTORY_PICTURES).getAbsolutePath())
                     .build()
                     .compressToFile(CaptureImage);
             //setCompressedImage();
@@ -58,15 +56,4 @@ public class ImageCompressor {
         return compressedImage;
     }
 
-    private void setCompressedImage() {
-        try {
-            Toast.makeText(this.context, Constants.getMessage4(), Toast.LENGTH_LONG).show();
-            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            Uri contentUri = Uri.fromFile(compressedImage);
-            mediaScanIntent.setData(contentUri);
-            this.context.sendBroadcast(mediaScanIntent);
-        } catch (Exception ex) {
-            Log.d("Exception 2", ex.getMessage());
-        }
-    }
 }

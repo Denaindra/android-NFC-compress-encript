@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.RandomAccessFile;
 
 import static android.R.attr.bitmap;
 import static android.R.attr.name;
@@ -108,15 +110,15 @@ public class FileSettings {
         setCompressedImage(imageFile);
     }
 
-   public void DeleteFile(){
-       try {
-           File file = new File(Constants.getDecriptFilePath());
-           file.delete();
-       }catch (Exception ex)
-       {
+    public void DeleteFile() {
+        try {
+            File file = new File(Constants.getDecriptFilePath());
+            file.delete();
+        } catch (Exception ex) {
 
-       }
-   }
+        }
+    }
+
     public void setCompressedImage(File imageFile) {
         try {
             Toast.makeText(this.context, Constants.getMessage4(), Toast.LENGTH_LONG).show();
@@ -148,5 +150,90 @@ public class FileSettings {
         String line = text.toString();
         return line;
     }
+
+    public byte[] FileConvertToByteArray(String fileName) {
+
+        RandomAccessFile f;
+        try {
+            f = new RandomAccessFile(fileName, "r");
+            long longlength = f.length();
+            int length = (int) longlength;
+            if (length != longlength)
+                throw new IOException("File size >= 2 GB");
+            // Read file and return data
+            byte[] FileByteString = new byte[length];
+            f.readFully(FileByteString);
+            f.close();
+
+            return FileByteString;
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void writeVideoFile(String VideBase64) {
+        try {
+            File newFolder = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
+            if (!newFolder.exists()) {
+                newFolder.mkdir();
+            }
+            try {
+                File StringVideo = new File(newFolder,Constants.getStringvideFile());
+                StringVideo.createNewFile();
+                FileOutputStream fOut = new FileOutputStream(StringVideo);
+                OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+                myOutWriter.append(VideBase64);
+                myOutWriter.close();
+                fOut.flush();
+                fOut.close();
+            } catch (Exception ex) {
+                System.out.println("ex: " + ex);
+            }
+        } catch (Exception e) {
+            System.out.println("e: " + e);
+        }
+        setCompressedImage(encriptImage);
+    }
+
+    public String ReadtheVideFile() {
+        File sdcard = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
+        File file = new File(sdcard,Constants.getStringvideFile());
+
+        StringBuilder text = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append('\n');
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String line = text.toString();
+        return line;
+    }
+
+    public void ByteArrayToString(byte[] bytearray) {
+        try {
+            File newFolder = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
+            if (!newFolder.exists()) {
+                newFolder.mkdir();
+            }
+            File VideoFile = new File(newFolder, Constants.getVideoFile());
+            VideoFile.createNewFile();
+            FileOutputStream out = new FileOutputStream(VideoFile);
+
+            out.write(bytearray);
+            out.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
 }

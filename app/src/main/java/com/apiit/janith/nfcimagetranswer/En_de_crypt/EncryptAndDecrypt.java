@@ -13,7 +13,7 @@ public class EncryptAndDecrypt {
         return instance;
     }
 
-    public void EncriptImage(String encriptPass,String base64String) {
+    public void Encriptfile(String encriptPass, String base64String) {
         try {
             encrypteMsg = AESCrypt.encrypt(encriptPass, base64String);
         } catch (Exception ex) {

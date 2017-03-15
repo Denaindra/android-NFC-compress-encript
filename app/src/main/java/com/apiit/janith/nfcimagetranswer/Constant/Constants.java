@@ -19,16 +19,26 @@ public class Constants {
     private static String NFCmessage4 = "Please enable Android Beam ";
     private static String Nfcmessage5 = "Please enable NFC.";
     private static String Nfcmessahe6 = "File Sucessfully, Please close to receiver devices";
-    private static String Nfcmessage7="PleseCheck encript and decript Password";
-    private static String nfcmessage8="encript pass not valid input";
+    private static String Nfcmessage7 = "PleseCheck encript and decript Password";
+    private static String nfcmessage8 = "encript pass not valid input";
     private static String NfcFolder = "Download";
     private static String NfcImage = "image-0.png";
-    private static String DecriptFilePath="//storage//emulated//0//Download//image-0.png";
+    private static String DecriptFilePath = "//storage//emulated//0//Download//image-0.png";
+    private static String StringVideoFile = "video.Mp4";
+    private static String VideoFile="tempMp3.Mp4";
 
 
-    public static String getDecriptFilePath(){
+    public static String getVideoFile(){
+        return VideoFile;
+    }
+    public static String getStringvideFile() {
+        return StringVideoFile;
+    }
+
+    public static String getDecriptFilePath() {
         return DecriptFilePath;
     }
+
     public static String getNfcFolder() {
         return NfcFolder;
     }
@@ -45,9 +55,10 @@ public class Constants {
         return Nfcmessage5;
     }
 
-    public static String getNfcmessage7(){
+    public static String getNfcmessage7() {
         return Nfcmessage7;
     }
+
     public static String getNFCmessage4() {
         return NFCmessage4;
     }
@@ -100,9 +111,11 @@ public class Constants {
     public static String getMessage1() {
         return Message1;
     }
-   public static String getNfcmessage8() {
+
+    public static String getNfcmessage8() {
         return nfcmessage8;
     }
+
     public static String getMessage2() {
         return Message2;
     }

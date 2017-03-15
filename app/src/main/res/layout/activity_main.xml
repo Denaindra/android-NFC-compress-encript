@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -52,7 +58,7 @@
         android:id="@+id/encriptPass" />
 
     <Button
-        android:text="Encript Image"
+        android:text="Encript File"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/encript"
@@ -69,13 +75,20 @@
         android:textStyle="normal|bold"
         android:enabled="false"/>
     <Button
-        android:text="Decrpt and View Image"
+        android:text="Decrpt Image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/decript"
         style="@style/Widget.AppCompat.Button.Colored"
         android:textStyle="normal|bold" />
 
+    <Button
+        android:text="Decrpt Video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/decriptvideo"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textStyle="normal|bold" />
 
 
     <ImageView
@@ -90,3 +103,4 @@
         android:enabled="false"/>
 
 </LinearLayout>
+</ScrollView>
