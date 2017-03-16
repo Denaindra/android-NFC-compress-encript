@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    encript.setEnabled(true);
+
                     //image file
                     if (imageStaus) {
                         if (filedetaisl.CheckFileAvailaBility()) {
@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception ex) {
 
                 }
+                encript.setEnabled(true);
 
             }
         });
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         encript.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nfcsend.setEnabled(true);
+
                 //encript image
                 if (imageStaus) {
                     if (encerippass.getText().toString() != null && encerippass.getText().toString() != "") {
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     encription.Encriptfile(encerippass.getText().toString(), VideoString);
                     filedetaisl.writeVideoFile(encription.getEncripSting());
                 }
+                nfcsend.setEnabled(true);
             }
         });
 
@@ -159,10 +161,13 @@ public class MainActivity extends AppCompatActivity {
                 nfcinstace.CheckNFCSettings();
                 if(imageStaus) {
                     if (nfcinstace.getNfcCondition()) {
-                        nfcinstace.sendFile();
+                        nfcinstace.sendFile(Constants.getEncriptFile());
                     }
                 }
                 if(videoStatus){
+                    if(nfcinstace.getNfcCondition()){
+                        nfcinstace.sendFile(Constants.getEncriptvideFile());
+                    }
 
                 }
                 disableButtons();
@@ -194,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     String encriptText = filedetaisl.ReadtheVideFile();
                     encription.Decrypt(encerippass.getText().toString(), encriptText);
                     byte[] videofile = videoInstance.StringToByetArray(encription.getdecrpytString());
-                    filedetaisl.ByteArrayToString(videofile);
+                    filedetaisl.ByteArrayToVideoFile(videofile);
 
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), Constants.getNfcmessage7(), Toast.LENGTH_SHORT).show();

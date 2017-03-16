@@ -50,7 +50,7 @@ public class NFCSettings {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public void sendFile() {
+    public void sendFile(String fileName) {
         nfcAdapter = NfcAdapter.getDefaultAdapter(context);
         if (!nfcAdapter.isEnabled()) {
             Toast.makeText(context, Constants.getNfcmessage5(), Toast.LENGTH_SHORT).show();
@@ -59,7 +59,7 @@ public class NFCSettings {
         } else {
             try {
                 File sdcard = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
-                File fileToTransfer = new File(sdcard, Constants.getEncriptFile());
+                File fileToTransfer = new File(sdcard,fileName);
                 fileToTransfer.setReadable(true, false);
                 nfcAdapter.setBeamPushUris(new Uri[]{Uri.fromFile(fileToTransfer)}, (Activity) context);
                 Toast.makeText(context, Constants.getNfcmessahe6(), Toast.LENGTH_SHORT).show();

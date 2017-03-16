@@ -3,9 +3,9 @@ package com.apiit.janith.nfcimagetranswer.Constant;
 public class Constants {
 
     private static String Message1 = "Picture Sucessfully loaded";
-    private static String Message2 = "You haven't picked Image";
+    private static String Message2 = "You haven't picked file";
     private static String Message3 = "Something went wrong";
-    private static String Message4 = "File sucessfully save with the Encript image";
+    private static String Message4 = "File sucessfully save with the Encript file";
     private static String Message5 = "File sucessfully Compressed";
     private static Integer MaxWidth = 640;
     private static Integer MaxHeight = 480;
@@ -26,12 +26,12 @@ public class Constants {
     private static String DecriptFilePath = "//storage//emulated//0//Download//image-0.png";
     private static String StringVideoFile = "video.Mp4";
     private static String VideoFile="tempMp3.Mp4";
+    private static String NfcVideo="video.Mp4";
 
-
-    public static String getVideoFile(){
+    public static String getDecriptVideoFile(){
         return VideoFile;
     }
-    public static String getStringvideFile() {
+    public static String getEncriptvideFile() {
         return StringVideoFile;
     }
 
@@ -41,6 +41,9 @@ public class Constants {
 
     public static String getNfcFolder() {
         return NfcFolder;
+    }
+    public static String getNfcVidepFile(){
+        return NfcVideo;
     }
 
     public static String getNfcImage() {

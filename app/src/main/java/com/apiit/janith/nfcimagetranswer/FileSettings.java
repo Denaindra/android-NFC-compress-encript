@@ -5,18 +5,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.apiit.janith.nfcimagetranswer.Constant.Constants;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -25,9 +21,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.RandomAccessFile;
-
-import static android.R.attr.bitmap;
-import static android.R.attr.name;
 
 /**
  * Created by Gayan Denaindra on 1/28/2017.
@@ -181,7 +174,7 @@ public class FileSettings {
                 newFolder.mkdir();
             }
             try {
-                File StringVideo = new File(newFolder,Constants.getStringvideFile());
+                File StringVideo = new File(newFolder,Constants.getEncriptvideFile());
                 StringVideo.createNewFile();
                 FileOutputStream fOut = new FileOutputStream(StringVideo);
                 OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
@@ -200,7 +193,8 @@ public class FileSettings {
 
     public String ReadtheVideFile() {
         File sdcard = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
-        File file = new File(sdcard,Constants.getStringvideFile());
+       // File sdcard = new File(Environment.getExternalStorageDirectory(), Constants.getNfcFolder());
+        File file = new File(sdcard,Constants.getNfcVidepFile());
 
         StringBuilder text = new StringBuilder();
         try {
@@ -218,13 +212,13 @@ public class FileSettings {
         return line;
     }
 
-    public void ByteArrayToString(byte[] bytearray) {
+    public void ByteArrayToVideoFile(byte[] bytearray) {
         try {
-            File newFolder = new File(Environment.getExternalStorageDirectory(), Constants.getFolderName());
+            File newFolder = new File(Environment.getExternalStorageDirectory(), Constants.getNfcFolder());
             if (!newFolder.exists()) {
                 newFolder.mkdir();
             }
-            File VideoFile = new File(newFolder, Constants.getVideoFile());
+            File VideoFile = new File(newFolder, Constants.getDecriptVideoFile());
             VideoFile.createNewFile();
             FileOutputStream out = new FileOutputStream(VideoFile);
 

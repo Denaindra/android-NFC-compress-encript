@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/mgdperera/Projects/AndroidStudioProjects/NFCImageTranswer/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="52fdc229a74bd9115246cea71d570254f11abc5f">
-        <dex dex="/Users/mgdperera/Projects/AndroidStudioProjects/NFCImageTranswer/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_68b261d4bb0365c39f28640e1d600f6340b51a4e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/mgdperera/Projects/AndroidStudioProjects/NFCImageTranswer/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/mgdperera/Dropbox/FYP projects/Janith/NFCImageTranswer/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="/Users/mgdperera/Projects/AndroidStudioProjects/NFCImageTranswer/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_5864e8f6a640789939ca73e197efea9266e5cfaf/classes.dex" />
+        <dex dex="/Users/mgdperera/Dropbox/FYP projects/Janith/NFCImageTranswer/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0574708005692fc13ef7079a9de64c94d2d41c3a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mgdperera/Dropbox/FYP projects/Janith/NFCImageTranswer/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6cf2591286d6c0a726ddb13677bc3676ab162b28">
+        <dex dex="/Users/mgdperera/Dropbox/FYP projects/Janith/NFCImageTranswer/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d074c66fcd39fcb48d3ca3e01d099f41009bc1a8/classes.dex" />
     </item>
 
 </items>
